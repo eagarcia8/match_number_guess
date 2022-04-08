@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+
+    <script
+  src="https://code.jquery.com/jquery-3.6.0.min.js"
+  integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+  crossorigin="anonymous"></script>
+</head>
+<body>
+    <h1>Match Number Game</h1>
+    <p>Guess a number between 1 and 100, and the computer will also guess a number between 1 and 100. If both number match, you win!</p>
+
+    <label for="user-name">First Name</label><br />
+    <input type="text" id="user-name" /><br />
+    <label for="user-guess">Your Guess</label><br />
+    <input type="number" id="user-guess" /><br />
+    <br />
+    <button id="submit">Submit Guess</button>
+
+    <p id="server-message"></p>
+
+    <ul id="guess-history">
+
+    </ul>
+
+    <script>
+        $(document).ready(function () {
+        
+            $("#submit").click(function () {
+
+                let url = "http://localhost:3000/submitGuess"
+                let data = {
+                    userGuess: parseInt($("#user-guess").val()),
+                    userName: $("#user-name").val()
+                };
+                
+                $.post(url, data, function (response) {
+                    
+                    let message = response.serverMessage;
+                    let error = response.error;
+
+                    $("#server-message").html(message);
+                    // The second argument is a ternary operator.
+                    $("#server-message").css("color", error ? "red" : "blue");
+                });
+
+            });
+
+        });        
+    </script>
+</body>
+</html>

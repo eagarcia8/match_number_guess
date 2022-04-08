@@ -1,0 +1,16 @@
+{
+  "name": "match_number_game",
+  "version": "1.0.0",
+  "description": "A game where the user guesses the number chosen by the server.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Eduardo",
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "mongoose": "^6.2.10"
+  }
+}
